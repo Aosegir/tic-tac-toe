@@ -7,22 +7,24 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="game-board">
-        <div class="game-square" id="0"></div>
-        <div class="game-square" id="1"></div>
-        <div class="game-square" id="2"></div>
-
-        <div class="game-square" id="3"></div>
-        <div class="game-square" id="4"></div>
-        <div class="game-square" id="5"></div>
-
-        <div class="game-square" id="6"></div>
-        <div class="game-square" id="7"></div>
-        <div class="game-square" id="8"></div>
-    </div>
-    <button id="play-game" class="visible">Play Game</button>
-    <button id="reset" class="invisible">Restart</button>
-    <h4 id=winner-display></h4>
+    <main class="flex column center-items">
+        <div id="game-board" class="small-margin">
+            <div class="game-square flex center-items" id="0"></div>
+            <div class="game-square flex center-items" id="1"></div>
+            <div class="game-square flex center-items" id="2"></div>
+    
+            <div class="game-square flex center-items" id="3"></div>
+            <div class="game-square flex center-items" id="4"></div>
+            <div class="game-square flex center-items" id="5"></div>
+    
+            <div class="game-square flex center-items" id="6"></div>
+            <div class="game-square flex center-items" id="7"></div>
+            <div class="game-square flex center-items" id="8"></div>
+        </div>
+        <button id="play-game" class="visible small-margin">Play Game</button>
+        <button id="reset" class="invisible small-margin">Restart</button>
+        <h4 id='winner-display' class="small-margin capslock"></h4>
+    </main>
     <script src="script.js"></script>
 </body>
 </html>

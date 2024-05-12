@@ -3,6 +3,10 @@
     padding: 0;
 }
 
+body {
+    background-color: #FDF6FA;
+}
+
 #game-board {
     display: grid;
     grid-template-columns: repeat(3, 150px);
@@ -10,12 +14,12 @@
 }
 
 .game-square {
-    border: 1px solid maroon;
+    border: 2px solid #27296D;
 }
 
 img {
-    height: 150px;
-    width: 150px;
+    height: 95%;
+    width: 95%;
 }
 
 .invisible {
@@ -24,4 +28,44 @@ img {
 
 .visible {
     opacity: 100;
+}
+
+button {
+    height: 60px;
+    width: 150px;
+    border-radius: 15px;
+    border: 0;
+    background-color: #A393EB;
+    color: #F5C7F7;
+    box-shadow: 2px 2px 5px #27296D;
+}
+
+h4 {
+    font-size: 2rem;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+/*
+    ACTUAL STYING
+*/
+
+.flex {
+    display: flex;    
+}
+
+.column {
+    flex-direction: column;
+}
+
+.center-items {
+    justify-content: center;
+    align-items: center;
+}
+
+.small-margin {
+    margin: 10px;
+}
+
+.capslock {
+    text-transform: uppercase;
 }
