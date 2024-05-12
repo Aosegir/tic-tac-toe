@@ -12,3 +12,16 @@
 .game-square {
     border: 1px solid maroon;
 }
+
+img {
+    height: 150px;
+    width: 150px;
+}
+
+.invisible {
+    opacity: 0;
+}
+
+.visible {
+    opacity: 100;
+}

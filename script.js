@@ -41,20 +41,27 @@
                 create the game, something that checks for winners or a draw
 */
 
+/*
+    GLOBAL VARIABLES?
+*/
+let matchWinner = false;
+let winnerDisplay = document.getElementById('winner-display');
+
 function createBoard() {
     // board has 9 distinct values corresponding to the 3x3 grid
     let array = ['.', '.', '.', '.', '.', '.', '.', '.', '.'];
 
     const getArray = () => array;
-    const setArray = (team) => {
-        let square = -1;
-        do {
-            square = prompt("Please select a square (1-9)");
-            square--;
-        } while ((square < 0 || square > 8) ||
-            (array[square] === 'X' || array[square] === 'O'));
+
+    const checkArray = (square) => {
+        return ((array[square] === 'X' || array[square] === 'O') ? false : true);
+    }
+
+    const setArray = (square, team) => {
         array.splice(square, 1, team);
-        document.getElementById(`${square}`).innerHTML = team;
+        let image = document.createElement('img');
+        image.src = `./images/${team}.png`;
+        document.getElementById(`${square}`).appendChild(image);
         return square;
     };
 
@@ -67,15 +74,15 @@ function createBoard() {
             case 0:
                 if(getArray()[1] === team && getArray()[2] === team) {
                     // 1st Win - Row 1 (0, 1, 2)
-                    console.log(`Row 1 victory! ${team} team wins!`);
+                    winnerDisplay.innerHTML = (`Row 1 victory! ${team} team wins!`);
                     winner = true;
                 } else if(getArray()[3] === team && getArray()[6] === team) {
                     // 2nd Win - Column 1 (0, 3, 6)
-                    console.log(`Column 1 victory! ${team} team wins!`);
+                    winnerDisplay.innerHTML = (`Column 1 victory! ${team} team wins!`);
                     winner = true;
                 } else if (getArray()[4] === team && getArray()[8] === team) {
                     // 3rd Win - Diagonal 1 (0, 4, 8)
-                    console.log(`Diagonal 1 victory! ${team} team wins!`);
+                    winnerDisplay.innerHTML = (`Diagonal 1 victory! ${team} team wins!`);
                     winner = true;
                 }
                 break;
@@ -85,11 +92,11 @@ function createBoard() {
             case 1:
                 if(getArray()[0] === team && getArray()[2] === team) {
                     // 1st Win - Row 1 (0, 1, 2)
-                    console.log(`Row 1 victory! ${team} team wins!`);
+                    winnerDisplay.innerHTML = (`Row 1 victory! ${team} team wins!`);
                     winner = true;
                 } else if(getArray()[4] === team && getArray()[7] === team) {
                     // 2nd Win - Column 2 (1, 4, 7)
-                    console.log(`Column 2 victory! ${team} team wins!`);
+                    winnerDisplay.innerHTML = (`Column 2 victory! ${team} team wins!`);
                     winner = true;
                 }
                 break;
@@ -99,15 +106,15 @@ function createBoard() {
             case 2:
                 if(getArray()[0] === team && getArray()[1] === team) {
                     // 1st Win - Row 1 (0, 1, 2)
-                    console.log(`Row 1 victory! ${team} team wins!`);
+                    winnerDisplay.innerHTML = (`Row 1 victory! ${team} team wins!`);
                     winner = true;
                 } else if(getArray()[5] === team && getArray()[8] === team) {
                     // 2nd Win - Column 3 (2, 5, 8)
-                    console.log(`Column 3 victory! ${team} team wins!`);
+                    winnerDisplay.innerHTML = (`Column 3 victory! ${team} team wins!`);
                     winner = true;
                 } else if (getArray()[4] === team && getArray()[6] === team) {
                     // 3rd Win - Diagonal 2 (2, 4, 6)
-                    console.log(`Diagonal 2 victory! ${team} team wins!`);
+                    winnerDisplay.innerHTML = (`Diagonal 2 victory! ${team} team wins!`);
                     winner = true;
                 }
                 break;
@@ -117,11 +124,11 @@ function createBoard() {
             case 3:
                 if(getArray()[4] === team && getArray()[5] === team) {
                     // 1st Win - Row 2 (3, 4, 5)
-                    console.log(`Row 2 victory! ${team} team wins!`);
+                    winnerDisplay.innerHTML = (`Row 2 victory! ${team} team wins!`);
                     winner = true;
                 } else if(getArray()[0] === team && getArray()[6] === team) {
                     // 2nd Win - Column 1 (0, 3, 6)
-                    console.log(`Column 1 victory! ${team} team wins!`);
+                    winnerDisplay.innerHTML = (`Column 1 victory! ${team} team wins!`);
                     winner = true;
                 }
                 break;
@@ -131,19 +138,19 @@ function createBoard() {
             case 4:
                 if(getArray()[3] === team && getArray()[5] === team) {
                     // 1st Win - Row 2 (3, 4, 5)
-                    console.log(`Row 2 victory! ${team} team wins!`);
+                    winnerDisplay.innerHTML = (`Row 2 victory! ${team} team wins!`);
                     winner = true;
                 } else if(getArray()[1] === team && getArray()[7] === team) {
                     // 2nd Win - Column 2 (1, 4, 7)
-                    console.log(`Column 2 victory! ${team} team wins!`);
+                    winnerDisplay.innerHTML = (`Column 2 victory! ${team} team wins!`);
                     winner = true;
                 } else if (getArray()[0] === team && getArray()[8] === team) {
                     // 3rd Win - Diagonal 1 (0, 4, 8)
-                    console.log(`Diagonal 1 victory! ${team} team wins!`);
+                    winnerDisplay.innerHTML = (`Diagonal 1 victory! ${team} team wins!`);
                     winner = true;
                 } else if (getArray()[2] === team && getArray()[6] === team) {
                     // 3rd Win - Diagonal 2 (2, 4, 6)
-                    console.log(`Diagonal 2 victory! ${team} team wins!`);
+                    winnerDisplay.innerHTML = (`Diagonal 2 victory! ${team} team wins!`);
                     winner = true;
                 }
                 break;
@@ -153,11 +160,11 @@ function createBoard() {
             case 5:
                 if(getArray()[3] === team && getArray()[4] === team) {
                     // 1st Win - Row 2 (3, 4, 5)
-                    console.log(`Row 2 victory! ${team} team wins!`);
+                    winnerDisplay.innerHTML = (`Row 2 victory! ${team} team wins!`);
                     winner = true;
                 } else if(getArray()[2] === team && getArray()[8] === team) {
                     // 2nd Win - Column 3 (2, 5, 8)
-                    console.log(`Column 3 victory! ${team} team wins!`);
+                    winnerDisplay.innerHTML = (`Column 3 victory! ${team} team wins!`);
                     winner = true;
                 }
                 break;
@@ -167,15 +174,15 @@ function createBoard() {
             case 6:
                 if(getArray()[7] === team && getArray()[8] === team) {
                     // 1st Win - Row 3 (6, 7, 8)
-                    console.log(`Row 3 victory! ${team} team wins!`);
+                    winnerDisplay.innerHTML = (`Row 3 victory! ${team} team wins!`);
                     winner = true;
                 } else if(getArray()[0] === team && getArray()[3] === team) {
                     // 2nd Win - Column 1 (0, 3, 6)
-                    console.log(`Column 1 victory! ${team} team wins!`);
+                    winnerDisplay.innerHTML = (`Column 1 victory! ${team} team wins!`);
                     winner = true;
                 } else if (getArray()[2] === team && getArray()[4] === team) {
                     // 3rd Win - Diagonal 2 (2, 4, 6)
-                    console.log(`Diagonal 2 victory! ${team} team wins!`);
+                    winnerDisplay.innerHTML = (`Diagonal 2 victory! ${team} team wins!`);
                     winner = true;
                 }
                 break;
@@ -185,11 +192,11 @@ function createBoard() {
             case 7:
                 if(getArray()[6] === team && getArray()[8] === team) {
                     // 1st Win - Row 3 (6, 7, 8)
-                    console.log(`Row 3 victory! ${team} team wins!`);
+                    winnerDisplay.innerHTML = (`Row 3 victory! ${team} team wins!`);
                     winner = true;
                 } else if(getArray()[1] === team && getArray()[4] === team) {
                     // 2nd Win - Column 2 (1, 4, 7)
-                    console.log(`Column 2 victory! ${team} team wins!`);
+                    winnerDisplay.innerHTML = (`Column 2 victory! ${team} team wins!`);
                     winner = true;
                 }
                 break;
@@ -199,27 +206,26 @@ function createBoard() {
             case 8:
                 if(getArray()[6] === team && getArray()[7] === team) {
                     // 1st Win - Row 3 (6, 7, 8)
-                    console.log(`Row 3 victory! ${team} team wins!`);
+                    winnerDisplay.innerHTML = (`Row 3 victory! ${team} team wins!`);
                     winner = true;
                 } else if(getArray()[2] === team && getArray()[5] === team) {
                     // 2nd Win - Column 3 (2, 5, 8)
-                    console.log(`Column 3 victory! ${team} team wins!`);
+                    winnerDisplay.innerHTML = (`Column 3 victory! ${team} team wins!`);
                     winner = true;
                 } else if (getArray()[0] === team && getArray()[4] === team) {
                     // 3rd Win - Diagonal 1 (0, 4, 8)
-                    console.log(`Diagonal 1 victory! ${team} team wins!`);
+                    winnerDisplay.innerHTML = (`Diagonal 1 victory! ${team} team wins!`);
                     winner = true;
                 }
                 break;
             // Default - something has gone wrong
             default:
-                console.log("Error! Something bad happened!");
                 break;
         }
         return winner;
     };
 
-    return { getArray, setArray, checkWinner };
+    return { getArray, checkArray, setArray, checkWinner };
 }
 
 function createPlayer(team) {
@@ -238,282 +244,42 @@ function createGame() {
     const board = createBoard();
 
     const playGame = () => {
-        /*
-            game starts at turn 1
-            game ends when someone has won OR 9 turns have passed
-            player 1 acts on odd turns and player 2 on even?
-        */
-       let winner = false;
-        while(turn <= 9) {
-            if(winner) {
-                break;
-            }
-            if(getTurn() % 2) {
-                let square = board.setArray(player1.team);
-                winner = board.checkWinner(square, player1.team);
-            } else {
-                let square = board.setArray(player2.team);
-                winner = board.checkWinner(square, player2.team);
-            }
-            nextTurn();
-        }
-
+        (function startGame (board) {
+            document.querySelectorAll('.game-square').forEach((square) => {
+                square.innerHTML = '';
+                square.addEventListener('click', () => {
+                    if(!matchWinner) {
+                        let currentPlayer;
+                        if(getTurn() % 2) {
+                            currentPlayer = player1.team;
+                        } else {
+                            currentPlayer = player2.team;
+                        }
+                        if (board.checkArray(square.id)) {
+                            board.setArray(square.id, currentPlayer);
+                            if(board.checkWinner(Number(square.id), currentPlayer)) matchWinner = true;
+                            nextTurn();
+                        }
+                    }
+                });
+            });
+        })(board);
     };
 
     return { player1, player2, board, playGame };
 }
 
 const playGame = document.getElementById('play-game');
+const reset = document.getElementById('reset');
 
 playGame.addEventListener('click', () => {
     const game = createGame();
     game.playGame();
+    playGame.classList.replace('visible', 'invisible');
+    reset.classList.replace('invisible', 'visible');
 });
 
-/*
 
-(function startGame (board) {
-        document.querySelectorAll('.game-square').forEach((square) => {
-            square.innerHTML = '';
-            square.addEventListener('click', () => {
-                board.setArray(square.id, team);
-                winner = board.checkWinner(Number(square.id), team);
-            });
-        });
-    })(game.board);
-
-
-const gameBoard = document.getElementById('game-board');
-let winner = false;
-
-/*
-    Factory Functions
-
-function createPlayer(team) {
-    return { team };
-};
-
-function createGame() {
-    let { getBoard } = createGameBoard();
-}
-
-function createGameBoard() {
-    const gameBoardArray = ['.', '.', '.', '.', '.', '.', '.', '.', '.'];
-
-    const getBoard = () => gameBoardArray;
-    console.log(getBoard);
-
-    function markBoard (team) {
-        // run if statement
-        // if statement can resolve, let it resolve
-        // if not, run if again
-        if(!gameBoardArray.includes('.') || winner) {
-            return;
-        }
-        let square;
-        do {
-            square = prompt("Please select a square (1-9)");
-            square--;
-            if(gameBoardArray[square] !== 'X' && gameBoardArray[square] !== 'O') {
-                gameBoardArray.splice(square, 1, team);
-            }
-        } while (gameBoardArray[square] !== 'X' && gameBoardArray[square] !== 'O');
-    
-        console.log(gameBoardArray);
-        checkGameState(square, team);
-    };
-
-    return { markBoard, getBoard };
-};
-
-let board = createGameBoard();
-let game = createGame();
-
-const Sinclair = createPlayer('X');
-const Adam = createPlayer('O');
-
-/*
-    Functions
-
-
-/*
-    This function checks the state of the board to determine if a winner
-    can be declared.
-
-function checkGameState (square, team) {
-    // Switch case to check board based on most recent square marked
-    switch(square) {
-        /*
-            Case 0 - 1st Square - 3 possible wins
-        
-        case 0:
-            if(game.getBoard[1] === team && gameBoardArray[2] === team) {
-                // 1st Win - Row 1 (0, 1, 2)
-                console.log(`Row 1 victory! ${team} team wins!`);
-                winner = true;
-            } else if(gameBoardArray[3] === team && gameBoardArray[6] === team) {
-                // 2nd Win - Column 1 (0, 3, 6)
-                console.log(`Column 1 victory! ${team} team wins!`);
-                winner = true;
-            } else if (gameBoardArray[4] === team && gameBoardArray[8] === team) {
-                // 3rd Win - Diagonal 1 (0, 4, 8)
-                console.log(`Diagonal 1 victory! ${team} team wins!`);
-                winner = true;
-            }
-            break;
-        /*
-            Case 1 - 2nd Square - 2 possible wins
-        
-        case 1:
-            if(gameBoardArray[0] === team && gameBoardArray[2] === team) {
-                // 1st Win - Row 1 (0, 1, 2)
-                console.log(`Row 1 victory! ${team} team wins!`);
-                winner = true;
-            } else if(gameBoardArray[4] === team && gameBoardArray[7] === team) {
-                // 2nd Win - Column 2 (1, 4, 7)
-                console.log(`Column 2 victory! ${team} team wins!`);
-                winner = true;
-            }
-            break;
-        /*
-            Case 2 - 3rd Square - 3 possible wins
-        
-        case 2:
-            if(gameBoardArray[0] === team && gameBoardArray[1] === team) {
-                // 1st Win - Row 1 (0, 1, 2)
-                console.log(`Row 1 victory! ${team} team wins!`);
-                winner = true;
-            } else if(gameBoardArray[5] === team && gameBoardArray[8] === team) {
-                // 2nd Win - Column 3 (2, 5, 8)
-                console.log(`Column 3 victory! ${team} team wins!`);
-                winner = true;
-            } else if (gameBoardArray[4] === team && gameBoardArray[6] === team) {
-                // 3rd Win - Diagonal 2 (2, 4, 6)
-                console.log(`Diagonal 2 victory! ${team} team wins!`);
-                winner = true;
-            }
-            break;
-        /*
-            Case 3 - 4th Square - 2 possible wins
-        
-        case 3:
-            if(gameBoardArray[4] === team && gameBoardArray[5] === team) {
-                // 1st Win - Row 2 (3, 4, 5)
-                console.log(`Row 2 victory! ${team} team wins!`);
-                winner = true;
-            } else if(gameBoardArray[0] === team && gameBoardArray[6] === team) {
-                // 2nd Win - Column 1 (0, 3, 6)
-                console.log(`Column 1 victory! ${team} team wins!`);
-                winner = true;
-            }
-            break;
-        /*
-            Case 4 - 5th Square - 4 possible wins
-        
-        case 4:
-            if(gameBoardArray[3] === team && gameBoardArray[5] === team) {
-                // 1st Win - Row 2 (3, 4, 5)
-                console.log(`Row 2 victory! ${team} team wins!`);
-                winner = true;
-            } else if(gameBoardArray[1] === team && gameBoardArray[7] === team) {
-                // 2nd Win - Column 2 (1, 4, 7)
-                console.log(`Column 2 victory! ${team} team wins!`);
-                winner = true;
-            } else if (gameBoardArray[0] === team && gameBoardArray[8] === team) {
-                // 3rd Win - Diagonal 1 (0, 4, 8)
-                console.log(`Diagonal 1 victory! ${team} team wins!`);
-                winner = true;
-            } else if (gameBoardArray[2] === team && gameBoardArray[6] === team) {
-                // 3rd Win - Diagonal 2 (2, 4, 6)
-                console.log(`Diagonal 2 victory! ${team} team wins!`);
-                winner = true;
-            }
-            break;
-        /*
-            Case 5 - 6th Square - 2 possible wins
-        
-        case 5:
-            if(gameBoardArray[3] === team && gameBoardArray[4] === team) {
-                // 1st Win - Row 2 (3, 4, 5)
-                console.log(`Row 2 victory! ${team} team wins!`);
-                winner = true;
-            } else if(gameBoardArray[2] === team && gameBoardArray[8] === team) {
-                // 2nd Win - Column 3 (2, 5, 8)
-                console.log(`Column 3 victory! ${team} team wins!`);
-                winner = true;
-            }
-            break;
-        /*
-            Case 6 - 7th Square - 3 possible wins
-        
-        case 6:
-            if(gameBoardArray[7] === team && gameBoardArray[8] === team) {
-                // 1st Win - Row 3 (6, 7, 8)
-                console.log(`Row 3 victory! ${team} team wins!`);
-                winner = true;
-            } else if(gameBoardArray[0] === team && gameBoardArray[3] === team) {
-                // 2nd Win - Column 1 (0, 3, 6)
-                console.log(`Column 1 victory! ${team} team wins!`);
-                winner = true;
-            } else if (gameBoardArray[2] === team && gameBoardArray[4] === team) {
-                // 3rd Win - Diagonal 2 (2, 4, 6)
-                console.log(`Diagonal 2 victory! ${team} team wins!`);
-                winner = true;
-            }
-            break;
-        /*
-            Case 7 - 8th Square - 2 possible wins
-        
-        case 7:
-            if(gameBoardArray[6] === team && gameBoardArray[8] === team) {
-                // 1st Win - Row 3 (6, 7, 8)
-                console.log(`Row 3 victory! ${team} team wins!`);
-                winner = true;
-            } else if(gameBoardArray[1] === team && gameBoardArray[4] === team) {
-                // 2nd Win - Column 2 (1, 4, 7)
-                console.log(`Column 2 victory! ${team} team wins!`);
-                winner = true;
-            }
-            break;
-        /*
-            Case 8 - 8th Square - 3 possible wins
-        
-        case 8:
-            if(gameBoardArray[6] === team && gameBoardArray[7] === team) {
-                // 1st Win - Row 3 (6, 7, 8)
-                console.log(`Row 3 victory! ${team} team wins!`);
-                winner = true;
-            } else if(gameBoardArray[2] === team && gameBoardArray[5] === team) {
-                // 2nd Win - Column 3 (2, 5, 8)
-                console.log(`Column 3 victory! ${team} team wins!`);
-                winner = true;
-            } else if (gameBoardArray[0] === team && gameBoardArray[4] === team) {
-                // 3rd Win - Diagonal 1 (0, 4, 8)
-                console.log(`Diagonal 1 victory! ${team} team wins!`);
-                winner = true;
-            }
-            break;
-        // Default - something has gone wrong
-        default:
-            console.log("Error! Something bad happened!");
-            break;
-    }
-    return;
-}
-
-const playGame = document.getElementById('play-game');
-
-playGame.addEventListener('click', () => {
-    winner = false;
-    do {
-        board.markBoard(Sinclair.team);
-        board.markBoard(Adam.team);
-    } while (!winner);
+reset.addEventListener('click', () => {
+    window.location.reload();
 });
-
-// there should be two players: one with team X, one with team O
-// the players go back and forth, updating the game board as they play
-// markBoard seems to work for taking in a square and team value and altering array
-// how to make players change every turn?
-// checkGameState seems to work for determining a winner accurately
-// need to make function for playing game and switching players */
